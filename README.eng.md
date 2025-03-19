@@ -94,6 +94,39 @@ The development of this project will progress through the following steps, refle
 - [ ] **Testing**: Write unit and integration tests to verify functionality and increase test coverage as the codebase grows.
 - [ ] **Frontend Development**: Choose a frontend tech (Blazor, Angular, or React) and build the user interface to bring the app to life.
 
+### Installation
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/mkaanerinc/EventManagement.git
+   cd EventManagement
+   ```
+
+2. **Restore dependencies**:
+   ```bash
+   dotnet restore EventManagement.sln
+   ```
+
+3. **Set up the database**:
+   - Update the connection string in appsettings.json (under EventManagement.Api or EventManagement.Infrastructure).
+   - Run migrations to create the database:
+   ```bash
+   dotnet ef migrations add InitialCreate --project EventManagement.Infrastructure
+   dotnet ef database update --project EventManagement.Infrastructure
+   ```
+   
+4. **Run the API**:
+   ```bash
+   dotnet run --project EventManagement.Api
+   ```
+   
+5. **Run the Worker Service (for reporting)**:
+   ```bash
+   dotnet run --project EventManagement.Worker
+   ```
+### Configuration
+- Configure RabbitMQ settings in appsettings.json (host, queue name, etc.).
+- Adjust database provider (SQL Server) in the ApplicationDbContext.
+
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
