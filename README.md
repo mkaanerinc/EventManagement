@@ -109,6 +109,7 @@ Projenin geliştirme süreci aşağıdaki adımlarla ilerleyecektir:
 3. **Veritabanını kurun**:
    - appsettings.json dosyasındaki bağlantı dizesini güncelleyin (EventManagement.Api veya EventManagement.Infrastructure altında).
    - Veritabanını oluşturmak için göçleri çalıştırın:
+   <br><br>
    ```bash
    dotnet ef migrations add InitialCreate --project EventManagement.Infrastructure
    dotnet ef database update --project EventManagement.Infrastructure
