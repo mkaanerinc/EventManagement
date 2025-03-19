@@ -109,6 +109,7 @@ The development of this project will progress through the following steps, refle
 3. **Set up the database**:
    - Update the connection string in appsettings.json (under EventManagement.Api or EventManagement.Infrastructure).
    - Run migrations to create the database:
+   <br><br>
    ```bash
    dotnet ef migrations add InitialCreate --project EventManagement.Infrastructure
    dotnet ef database update --project EventManagement.Infrastructure
