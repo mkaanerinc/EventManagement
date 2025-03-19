@@ -94,6 +94,39 @@ Projenin geliştirme süreci aşağıdaki adımlarla ilerleyecektir:
 - [ ] **Testler**: Birim testleri ve entegrasyon testlerini yazma ve test kapsamını artırma.
 - [ ] **Frontend Geliştirme**: Frontend teknolojisini (Blazor, Angular veya React) seçme ve kullanıcı arayüzünü uygulama.
 
+### Kurulum
+1. **Repository klonlayın**:
+   ```bash
+   git clone https://github.com/mkaanerinc/EventManagement.git
+   cd EventManagement
+   ```
+
+2. **Bağımlılıkları Yükleyin**:
+   ```bash
+   dotnet restore EventManagement.sln
+   ```
+
+3. **Veritabanını kurun**:
+   - appsettings.json dosyasındaki bağlantı dizesini güncelleyin (EventManagement.Api veya EventManagement.Infrastructure altında).
+   - Veritabanını oluşturmak için göçleri çalıştırın:
+   ```bash
+   dotnet ef migrations add InitialCreate --project EventManagement.Infrastructure
+   dotnet ef database update --project EventManagement.Infrastructure
+   ```
+   
+4. **API’yi çalıştırın**:
+   ```bash
+   dotnet run --project EventManagement.Api
+   ```
+   
+5. **Worker Servisini çalıştırın (raporlama için)**:
+   ```bash
+   dotnet run --project EventManagement.Worker
+   ```
+### Yapılandırma
+- appsettings.json dosyasında RabbitMQ ayarlarını (host, kuyruk adı vb.) yapılandırın.
+- Veritabanı sağlayıcısını (SQL Server) ApplicationDbContext içinde ayarlayın.
+
 ## Lisans
 
 Bu proje [MIT Lisansı](https://opensource.org/licenses/MIT) kapsamında lisanslanmıştır.
