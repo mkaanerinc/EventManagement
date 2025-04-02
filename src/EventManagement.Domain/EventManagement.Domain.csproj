@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Core.Infrastructure">
+      <HintPath>..\..\..\Core.Packages\src\Core.Infrastructure\bin\Debug\net9.0\Core.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
