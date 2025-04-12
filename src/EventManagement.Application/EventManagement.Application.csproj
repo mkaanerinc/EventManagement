@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EventManagement.Domain\EventManagement.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Core.Infrastructure">
+      <HintPath>..\..\..\Core.Packages\src\Core.Infrastructure\bin\Debug\net9.0\Core.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
