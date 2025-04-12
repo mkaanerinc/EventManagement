@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace EventManagement.Application.Services.Repositories;
 
+/// <summary>
+/// Represents the contract for the Attendee repository.
+/// Provides asynchronous and synchronous data access methods specific to the <see cref="Attendee"/> entity.
+/// </summary>
 public interface IAttendeeRepository : IAsyncRepository<Attendee, Guid>, IRepository<Attendee, Guid>
 {
 }
