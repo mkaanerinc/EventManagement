@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EventManagement.Infrastructure\EventManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
