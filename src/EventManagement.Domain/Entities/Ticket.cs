@@ -39,6 +39,23 @@ public class Ticket : Entity<Guid>
     public int QuantitySold { get; set; }
 
     /// <summary>
+    /// The event associated with this ticket. Every ticket must be linked to a specific event.
+    /// </summary>
+    /// <remarks>
+    /// This navigation property corresponds to the <see cref="EventId"/> foreign key, which is required (non-nullable) in the database schema.
+    /// </remarks>
+    public virtual Event Event { get; set; } = null!;
+
+    /// <summary>
+    /// The collection of attendees who have purchased or are associated with this ticket.
+    /// </summary>
+    /// <remarks>
+    /// This navigation property represents a one-to-many relationship where a single ticket can be associated with multiple attendees.
+    /// The collection is initialized as an empty <see cref="HashSet{T}"/> to prevent null reference issues and ensure unique attendees.
+    /// </remarks>
+    public virtual ICollection<Attendee> Attendees { get; set; } = new HashSet<Attendee>();
+
+    /// <summary>
     /// Parameterless constructor required for ORM tools such as Entity Framework Core.
     /// </summary>
     public Ticket()

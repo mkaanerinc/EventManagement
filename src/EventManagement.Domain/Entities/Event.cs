@@ -44,6 +44,24 @@ public class Event : Entity<Guid>
     public int TotalCapacity { get; set; }
 
     /// <summary>
+    /// The collection of tickets associated with this event.
+    /// </summary>
+    /// <remarks>
+    /// This navigation property represents a one-to-many relationship where a single event can be associated with multiple tickets.
+    /// The collection is initialized as an empty <see cref="HashSet{T}"/> to prevent null reference issues and ensure unique tickets.
+    /// </remarks>
+    public virtual ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
+
+    /// <summary>
+    /// The collection of reports associated with this event.
+    /// </summary>
+    /// <remarks>
+    /// This navigation property represents a one-to-many relationship where a single event can be associated with multiple reports.
+    /// The collection is initialized as an empty <see cref="HashSet{T}"/> to prevent null reference issues and ensure unique reports.
+    /// </remarks>
+    public virtual ICollection<Report> Reports { get; set; } = new HashSet<Report>();
+
+    /// <summary>
     /// Parameterless constructor required for ORM tools such as Entity Framework Core.
     /// </summary>
     public Event()

@@ -39,6 +39,14 @@ public class Attendee : Entity<Guid>
     public bool IsCheckedIn { get; set; }
 
     /// <summary>
+    /// The ticket associated with this attendee.
+    /// </summary>
+    /// <remarks>
+    /// This navigation property corresponds to the <see cref="TicketId"/> foreign key, which is required (non-nullable) in the database schema.
+    /// </remarks>
+    public virtual Ticket Ticket { get; set; } = null!;
+
+    /// <summary>
     /// Parameterless constructor required for ORM tools such as Entity Framework Core.
     /// </summary>
     public Attendee()

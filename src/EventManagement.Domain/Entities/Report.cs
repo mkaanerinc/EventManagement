@@ -40,6 +40,14 @@ public class Report : Entity<Guid>
     public DateTimeOffset? CompletedAt { get; set; }
 
     /// <summary>
+    /// The event associated with this report.
+    /// </summary>
+    /// <remarks>
+    /// This navigation property corresponds to the <see cref="EventId"/> foreign key, which is required (non-nullable) in the database schema.
+    /// </remarks>
+    public virtual Event Event { get; set; } = null!;
+
+    /// <summary>
     /// Parameterless constructor required for ORM tools such as Entity Framework Core.
     /// </summary>
     public Report()
