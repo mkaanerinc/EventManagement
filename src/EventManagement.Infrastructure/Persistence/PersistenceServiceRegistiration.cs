@@ -12,8 +12,17 @@ using System.Threading.Tasks;
 
 namespace EventManagement.Infrastructure.Persistence;
 
+/// <summary>
+/// A static class responsible for registering the persistence services in the dependency injection container.
+/// </summary>
 public static class PersistenceServiceRegistiration
 {
+    /// <summary>
+    /// Registers the DbContext and repository services to the provided <see cref="IServiceCollection"/>.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> where services will be registered.</param>
+    /// <param name="configuration">The <see cref="IConfiguration"/> that provides application settings, including the connection string.</param>
+    /// <returns>The <see cref="IServiceCollection"/> with the added persistence services.</returns>
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<BaseDbContext>(options =>
