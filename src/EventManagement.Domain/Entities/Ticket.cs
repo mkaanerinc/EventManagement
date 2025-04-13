@@ -9,9 +9,8 @@ namespace EventManagement.Domain.Entities;
 /// </summary>
 public class Ticket : Entity<Guid>
 {
-    // FluentValidation ile de run-time'da güvenlik sağlandı.
-    // EF Core veritabanından verileri çekip property'lere set etmek için parametresiz constructor'a ihtiyaç duyar. Bu sebeple parametresiz constructor oluşturuldu.
-    // Kullanım kolaylığı sağlamak için ise parametreli constructor oluşturuldu.
+    // EF Core requires a parameterless constructor to set values to properties by fetching data from the database. For this reason, a parameterless constructor was created.
+    // A parameterized constructor was also created for ease of use.
 
     /// <summary>
     /// Gets or sets the identifier of the event associated with this ticket.

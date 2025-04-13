@@ -8,10 +8,10 @@ namespace EventManagement.Domain.Entities;
 /// </summary>
 public class Attendee : Entity<Guid>
 {
-    // Compile-time'da null-safety sağlamak için 'required' kullanıldı. Böylece bu alanlar mutlaka atanmalı, aksi takdirde derleme hatası alınır.
-    // FluentValidation ile de run-time'da güvenlik sağlandı.
-    // EF Core veritabanından verileri çekip property'lere set etmek için parametresiz constructor'a ihtiyaç duyar. Bu sebeple parametresiz constructor oluşturuldu.
-    // Kullanım kolaylığı sağlamak için ise parametreli constructor oluşturuldu.
+    // To ensure null-safety at compile-time, 'required' is used. This way, these fields must be assigned, otherwise a compile-time error will occur.
+    // FluentValidation ensures safety at run-time as well.
+    // EF Core requires a parameterless constructor to set values to properties by fetching data from the database. For this reason, a parameterless constructor was created.
+    // A parameterized constructor was also created for ease of use.
 
     /// <summary>
     /// Gets or sets the ID of the ticket associated with the attendee.
