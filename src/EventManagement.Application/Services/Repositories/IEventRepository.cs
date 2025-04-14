@@ -3,6 +3,7 @@ using EventManagement.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,4 +15,10 @@ namespace EventManagement.Application.Services.Repositories;
 /// </summary>
 public interface IEventRepository : IAsyncRepository<Event, Guid>, IRepository<Event, Guid>
 {
+    Task<int> GetRemainingTicketCountAsync(
+    Expression<Func<Event, bool>>? eventPredicate = null,
+    Expression<Func<Ticket, bool>>? ticketPredicate = null,
+    bool withDeleted = false,
+    bool enableTracking = true,
+    CancellationToken cancellationToken = default);
 }
