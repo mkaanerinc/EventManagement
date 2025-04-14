@@ -1,3 +1,4 @@
+using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using EventManagement.Application;
 using EventManagement.Infrastructure.Persistence;
 
@@ -17,6 +18,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+}
+
+if (app.Environment.IsProduction())
+{
+    app.ConfigureCustomExceptionMiddleware();
 }
 
 app.UseHttpsRedirection();

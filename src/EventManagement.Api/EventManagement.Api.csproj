@@ -22,4 +22,10 @@
     <ProjectReference Include="..\EventManagement.Infrastructure\EventManagement.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Core.CrossCuttingConcerns">
+      <HintPath>..\..\..\Core.Packages\src\Core.CrossCuttingConcerns\bin\Debug\net9.0\Core.CrossCuttingConcerns.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
