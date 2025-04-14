@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Core.Application.Pipelines.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace EventManagement.Application;
 public static class ApplicationServiceRegistiration
 {
     /// <summary>
-    /// Registers AutoMapper and MediatR services to the provided <see cref="IServiceCollection"/>.
+    /// Registers AutoMapper, FluentValidation and MediatR services to the provided <see cref="IServiceCollection"/>.
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> where services will be registered.</param>
     /// <param name="configuration">The <see cref="IConfiguration"/> that provides application settings.</param>
@@ -31,6 +33,8 @@ public static class ApplicationServiceRegistiration
         // If your AutoMapper profiles are only present in one layer, this method is preferred.
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
         // 1. configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         // This line registers services from the assembly where the current code is executing. It scans and registers services only from the executing assembly.
         // 2. configuration.RegisterServicesFromAssembly(typeof(ApplicationServiceRegistiration).Assembly);
@@ -39,6 +43,8 @@ public static class ApplicationServiceRegistiration
         services.AddMediatR(configuration =>
         {
             configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+
+            configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
         });
 
         return services;

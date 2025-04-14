@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.4" />
@@ -19,6 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Core.Application">
+      <HintPath>..\..\..\Core.Packages\src\Core.Application\bin\Debug\net9.0\Core.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="Core.CrossCuttingConcerns">
+      <HintPath>..\..\..\Core.Packages\src\Core.CrossCuttingConcerns\bin\Debug\net9.0\Core.CrossCuttingConcerns.dll</HintPath>
+    </Reference>
     <Reference Include="Core.Infrastructure">
       <HintPath>..\..\..\Core.Packages\src\Core.Infrastructure\bin\Debug\net9.0\Core.Infrastructure.dll</HintPath>
     </Reference>
