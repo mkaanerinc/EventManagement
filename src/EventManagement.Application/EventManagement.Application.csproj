@@ -34,7 +34,6 @@
   <ItemGroup>
     <Folder Include="Features\Events\Constants\" />
     <Folder Include="Features\Events\Rules\" />
-    <Folder Include="Features\Events\Queries\" />
   </ItemGroup>
 
 </Project>
