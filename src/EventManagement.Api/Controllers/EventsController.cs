@@ -50,10 +50,12 @@ public class EventsController : BaseController
     /// <returns>The updated event details.</returns>
     /// <response code="200">Event updated successfully and returned.</response>
     /// <response code="400">Invalid input.</response>
+    /// <response code="404">Event not found with the specified ID.</response>
     /// <response code="500">Server error.</response>
     [HttpPut]
     [ProducesResponseType(typeof(UpdatedEventResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Update([FromBody] UpdateEventCommand updateEventCommand)
     {
@@ -69,10 +71,12 @@ public class EventsController : BaseController
     /// <returns>The deleted event details.</returns>
     /// <response code="200">Event deleted successfully and returned.</response>
     /// <response code="400">Invalid input.</response>
+    /// <response code="404">Event not found with the specified ID.</response>
     /// <response code="500">Server error.</response>
     [HttpDelete]
     [ProducesResponseType(typeof(DeletedEventResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete([FromBody] DeleteEventCommand deleteEventCommand)
     {
@@ -88,10 +92,12 @@ public class EventsController : BaseController
     /// <returns>The details of the event.</returns>
     /// <response code="200">Event retrieved successfully.</response>
     /// <response code="400">Invalid input.</response>
+    /// <response code="404">Event not found with the specified ID.</response>
     /// <response code="500">Internal server error.</response>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(GetByIdEventResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
@@ -196,10 +202,12 @@ public class EventsController : BaseController
     /// <returns>The remaining ticket count for the event.</returns>
     /// <response code="200">Successfully retrieved the remaining ticket count.</response>
     /// <response code="400">Invalid input.</response>
+    /// <response code="404">Event not found with the specified ID.</response>
     /// <response code="500">An internal server error occurred.</response>
     [HttpGet("{id}/remaining-ticket-count")]
     [ProducesResponseType(typeof(GetRemainingTicketCountEventResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetRemainingTicketCount([FromRoute] Guid id)
     {
@@ -218,10 +226,12 @@ public class EventsController : BaseController
     /// <returns>The remaining ticket count for the specified event and ticket type.</returns>
     /// <response code="200">Successfully retrieved the remaining ticket count for the specified ticket type.</response>
     /// <response code="400">Invalid input.</response>
+    /// <response code="404">Event not found with the specified ID.</response>
     /// <response code="500">An internal server error occurred.</response>
     [HttpGet("{id}/remaining-ticket-count-by-ticket-type")]
     [ProducesResponseType(typeof(GetRemainigTicketCountByTicketTypeEventResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetRemainingTicketCountByTicketType([FromRoute] Guid id, [FromQuery] TicketType ticketType)
     {

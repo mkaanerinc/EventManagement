@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EventManagement.Application.Features.Events.Rules;
 using EventManagement.Application.Services.Repositories;
 using EventManagement.Domain.Entities;
 using MediatR;
@@ -27,16 +28,19 @@ public class GetByIdEventQuery : IRequest<GetByIdEventResponse>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
+        private readonly EventBusinessRules _eventBusinessRules;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetByIdEventQueryHandler"/> class.
         /// </summary>
         /// <param name="eventRepository">The repository used to access event data.</param>
         /// <param name="mapper">The AutoMapper instance used for mapping domain entities to DTOs.</param>
-        public GetByIdEventQueryHandler(IEventRepository eventRepository, IMapper mapper)
+        /// <param name="eventBusinessRules">The business rules for validating event-specific constraints.</param>
+        public GetByIdEventQueryHandler(IEventRepository eventRepository, IMapper mapper, EventBusinessRules eventBusinessRules)
         {
             _eventRepository = eventRepository;
             _mapper = mapper;
+            _eventBusinessRules = eventBusinessRules;
         }
 
         /// <summary>
@@ -45,8 +49,11 @@ public class GetByIdEventQuery : IRequest<GetByIdEventResponse>
         /// <param name="request">The query request containing the event's identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="GetByIdEventResponse"/> containing the details of the event.</returns>
+        /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
         public async Task<GetByIdEventResponse> Handle(GetByIdEventQuery request, CancellationToken cancellationToken)
         {
+            await _eventBusinessRules.CheckEventExistsByIdAsync(request.Id);
+
             Event? eventbyid = await _eventRepository.GetAsync(
                 predicate: e => e.Id == request.Id,
                 cancellationToken: cancellationToken
