@@ -68,9 +68,11 @@ public class EventsController : BaseController
     /// <param name="deleteEventCommand">The event delete command.</param>
     /// <returns>The deleted event details.</returns>
     /// <response code="200">Event deleted successfully and returned.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">Server error.</response>
     [HttpDelete]
     [ProducesResponseType(typeof(DeletedEventResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete([FromBody] DeleteEventCommand deleteEventCommand)
     {
@@ -85,9 +87,11 @@ public class EventsController : BaseController
     /// <param name="id">The unique identifier of the event.</param>
     /// <returns>The details of the event.</returns>
     /// <response code="200">Event retrieved successfully.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">Internal server error.</response>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(GetByIdEventResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
@@ -104,9 +108,11 @@ public class EventsController : BaseController
     /// <param name="pageRequest">Pagination parameters.</param>
     /// <returns>A paginated list of events.</returns>
     /// <response code="200">List retrieved successfully.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">Internal server error.</response>
     [HttpGet]
     [ProducesResponseType(typeof(GetListResponse<GetListEventListItemDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
@@ -124,9 +130,11 @@ public class EventsController : BaseController
     /// <param name="eventAt">The date to filter events by.</param>
     /// <returns>Returns a list of events occurring on the specified date.</returns>
     /// <response code="200">List retrieved successfully.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">Internal server error.</response>
     [HttpGet("by-date")]
     [ProducesResponseType(typeof(GetListResponse<GetListByDateEventListItemDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetListByDate([FromQuery] PageRequest pageRequest, [FromQuery] DateTimeOffset eventAt)
     {
@@ -145,9 +153,11 @@ public class EventsController : BaseController
     /// <param name="endAt">End date of the range.</param>
     /// <returns>Paginated list of events within the date range.</returns>
     /// <response code="200">List retrieved successfully.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">Internal server error.</response>
     [HttpGet("by-date-range")]
     [ProducesResponseType(typeof(GetListResponse<GetListByDateRangeEventListItemDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetListByDateRange([FromQuery] PageRequest pageRequest, [FromQuery] DateTimeOffset startAt, [FromQuery] DateTimeOffset endAt)
     {
@@ -164,9 +174,11 @@ public class EventsController : BaseController
     /// <param name="pageRequest">Pagination information.</param>
     /// <returns>A list of events that are scheduled to occur in the future.</returns>
     /// <response code="200">List of upcoming events returned successfully.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">Internal server error.</response>
     [HttpGet("of-upcoming")]
     [ProducesResponseType(typeof(GetListResponse<GetListOfUpcomingEventListItemDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetListOfUpcoming([FromQuery] PageRequest pageRequest)
     {
@@ -183,9 +195,11 @@ public class EventsController : BaseController
     /// <param name="id">The unique identifier of the event.</param>
     /// <returns>The remaining ticket count for the event.</returns>
     /// <response code="200">Successfully retrieved the remaining ticket count.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">An internal server error occurred.</response>
     [HttpGet("{id}/remaining-ticket-count")]
     [ProducesResponseType(typeof(GetRemainingTicketCountEventResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetRemainingTicketCount([FromRoute] Guid id)
     {
@@ -203,9 +217,11 @@ public class EventsController : BaseController
     /// <param name="ticketType">The type of ticket for which the remaining count is requested.</param>
     /// <returns>The remaining ticket count for the specified event and ticket type.</returns>
     /// <response code="200">Successfully retrieved the remaining ticket count for the specified ticket type.</response>
+    /// <response code="400">Invalid input.</response>
     /// <response code="500">An internal server error occurred.</response>
     [HttpGet("{id}/remaining-ticket-count-by-ticket-type")]
     [ProducesResponseType(typeof(GetRemainigTicketCountByTicketTypeEventResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetRemainingTicketCountByTicketType([FromRoute] Guid id, [FromQuery] TicketType ticketType)
     {

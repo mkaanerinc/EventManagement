@@ -19,6 +19,10 @@ public class UpdateEventCommandValidator : AbstractValidator<UpdateEventCommand>
     /// </summary>
     public UpdateEventCommandValidator()
     {
+        RuleFor(e => e.Id)
+            .NotEmpty().WithMessage("Etkinlik ID'si boş olamaz.")
+            .NotEqual(Guid.Empty).WithMessage("Geçerli bir etkinlik ID'si girilmelidir.");
+
         RuleFor(e => e.Title)
                .NotEmpty().WithMessage("Title is required.")
                .MinimumLength(3).WithMessage("Title must be at least 3 characters long.");
