@@ -15,14 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EventManagement.Infrastructure\EventManagement.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Core.Application">
+      <HintPath>..\..\..\Core.Packages\src\Core.Application\bin\Debug\net9.0\Core.Application.dll</HintPath>
+    </Reference>
     <Reference Include="Core.CrossCuttingConcerns">
       <HintPath>..\..\..\Core.Packages\src\Core.CrossCuttingConcerns\bin\Debug\net9.0\Core.CrossCuttingConcerns.dll</HintPath>
     </Reference>
