@@ -20,7 +20,7 @@ public class DeleteEventCommandValidator : AbstractValidator<DeleteEventCommand>
     public DeleteEventCommandValidator()
     {
         RuleFor(e => e.Id)
-            .NotEmpty().WithMessage("Etkinlik ID'si boş olamaz.")
-            .NotEqual(Guid.Empty).WithMessage("Geçerli bir etkinlik ID'si girilmelidir.");
+            .NotEmpty().WithMessage("Event ID cannot be empty.")
+            .NotEqual(Guid.Empty).WithMessage("A valid event ID must be provided.");
     }
 }

@@ -49,23 +49,6 @@ public class TicketBusinessRules : BaseBusinessRules
     }
 
     /// <summary>
-    /// Checks if an event with the specified ID exists in the repository.
-    /// Throws a NotFoundException if the event is not found.
-    /// </summary>
-    /// <param name="eventId">The ID of the event to check.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    /// <exception cref="NotFoundException">Thrown when the event with the given ID is not found.</exception>
-    public async Task CheckEventExistsByIdAsync(Guid eventId)
-    {
-        bool eventExists = await _eventRepository.AnyAsync(e => e.Id == eventId);
-
-        if (!eventExists)
-        {
-            throw new NotFoundException(string.Format(EventsMessages.NotFoundById, eventId));
-        }
-    }
-
-    /// <summary>
     /// Ensures that the number of tickets sold does not exceed the available quantity.
     /// </summary>
     /// <param name="quantitySold">The number of tickets that have been sold.</param>
@@ -92,7 +75,7 @@ public class TicketBusinessRules : BaseBusinessRules
     /// </exception>
     public async Task EnsureEventExists(Guid eventId)
     {
-        var exists = await _eventRepository.AnyAsync(t => t.Id == eventId);
+        var exists = await _eventRepository.AnyAsync(e => e.Id == eventId);
         if (!exists)
             throw new BusinessException(TicketsMessages.NotFoundEvent);
     }

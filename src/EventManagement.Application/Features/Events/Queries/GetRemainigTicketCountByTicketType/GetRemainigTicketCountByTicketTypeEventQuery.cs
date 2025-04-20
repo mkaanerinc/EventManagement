@@ -1,5 +1,4 @@
-﻿using EventManagement.Application.Features.Events.Queries.GetRemainingTicketCount;
-using EventManagement.Application.Features.Events.Rules;
+﻿using EventManagement.Application.Features.Events.Rules;
 using EventManagement.Application.Services.Repositories;
 using EventManagement.Domain.Enums;
 using MediatR;

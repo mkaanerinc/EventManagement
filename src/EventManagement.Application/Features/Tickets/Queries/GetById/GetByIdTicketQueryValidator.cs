@@ -20,7 +20,7 @@ public class GetByIdTicketQueryValidator : AbstractValidator<GetByIdTicketQuery>
     public GetByIdTicketQueryValidator()
     {
         RuleFor(t => t.Id)
-            .NotEmpty().WithMessage("Bilet ID'si boş olamaz.")
-            .NotEqual(Guid.Empty).WithMessage("Geçerli bir bilet ID'si girilmelidir.");
+            .NotEmpty().WithMessage("Ticket ID cannot be empty.")
+            .NotEqual(Guid.Empty).WithMessage("A valid ticket ID must be provided.");
     }
 }

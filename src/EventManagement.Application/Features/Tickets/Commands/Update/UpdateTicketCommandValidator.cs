@@ -20,26 +20,26 @@ public class UpdateTicketCommandValidator : AbstractValidator<UpdateTicketComman
     /// </summary>
     public UpdateTicketCommandValidator()
     {
-        RuleFor(e => e.Id)
-            .NotEmpty().WithMessage("Bilet ID'si boş olamaz.")
-            .NotEqual(Guid.Empty).WithMessage("Geçerli bir bilet ID'si girilmelidir.");
+        RuleFor(t => t.Id)
+            .NotEmpty().WithMessage("Ticket ID cannot be empty.")
+            .NotEqual(Guid.Empty).WithMessage("A valid ticket ID must be provided.");
 
-        RuleFor(x => x.EventId)
-            .NotEmpty().WithMessage("Etkinlik kimliği belirtilmelidir.");
+        RuleFor(t => t.EventId)
+            .NotEmpty().WithMessage("Event ID must be specified.");
 
-        RuleFor(x => x.TicketType)
-            .Must(BeAValidTicketType).WithMessage("Geçerli bir bilet türü seçilmelidir.");
+        RuleFor(t => t.TicketType)
+            .Must(BeAValidTicketType).WithMessage("A valid ticket type must be selected.");
 
-        RuleFor(x => x.Price)
-            .NotNull().WithMessage("Fiyat belirtilmelidir.")
-            .GreaterThan(0).WithMessage("Fiyat sıfırdan büyük olmalıdır.");
+        RuleFor(t => t.Price)
+            .NotNull().WithMessage("Price must be specified.")
+            .GreaterThan(0).WithMessage("Price must be greater than zero.");
 
-        RuleFor(x => x.QuantityAvailable)
-            .NotNull().WithMessage("Satışa sunulan miktar belirtilmelidir.")
-            .GreaterThanOrEqualTo(0).WithMessage("Miktar negatif olamaz.");
+        RuleFor(t => t.QuantityAvailable)
+            .NotNull().WithMessage("Available quantity must be specified.")
+            .GreaterThanOrEqualTo(0).WithMessage("Quantity cannot be negative.");
 
-        RuleFor(x => x.QuantitySold)
-            .GreaterThanOrEqualTo(0).WithMessage("Satılan miktar negatif olamaz.");
+        RuleFor(t => t.QuantitySold)
+            .GreaterThanOrEqualTo(0).WithMessage("Sold quantity cannot be negative.");
     }
 
     /// <summary>

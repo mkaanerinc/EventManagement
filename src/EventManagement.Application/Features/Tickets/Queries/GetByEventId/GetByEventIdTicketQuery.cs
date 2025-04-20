@@ -54,7 +54,7 @@ public class GetByEventIdTicketQuery : IRequest<GetByEventIdTicketResponse>
         public async Task<GetByEventIdTicketResponse> Handle(GetByEventIdTicketQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(
-                async () => await _ticketBusinessRules.CheckEventExistsByIdAsync(request.EventId)         
+                async () => await _ticketBusinessRules.EnsureEventExists(request.EventId)         
             );
 
             Ticket? ticketbyeventid = await _ticketRepository.GetAsync(

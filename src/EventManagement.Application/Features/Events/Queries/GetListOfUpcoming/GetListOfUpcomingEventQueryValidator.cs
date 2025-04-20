@@ -19,11 +19,11 @@ public class GetListOfUpcomingEventQueryValidator : AbstractValidator<GetListOfU
     /// </summary>
     public GetListOfUpcomingEventQueryValidator()
     {
-        RuleFor(q => q.PageRequest.PageIndex)
-            .GreaterThan(0).WithMessage("Sayfa numarası 0'dan büyük olmalıdır.");
+        RuleFor(e => e.PageRequest.PageIndex)
+            .GreaterThan(0).WithMessage("Page number must be greater than 0.");
 
-        RuleFor(q => q.PageRequest.PageSize)
-            .GreaterThan(0).WithMessage("Sayfa boyutu 0'dan büyük olmalıdır.")
-            .LessThanOrEqualTo(100).WithMessage("Sayfa boyutu en fazla 100 olabilir.");
+        RuleFor(e => e.PageRequest.PageSize)
+            .GreaterThan(0).WithMessage("Page size must be greater than 0.")
+            .LessThanOrEqualTo(100).WithMessage("Page size can be at most 100.");
     }
 }

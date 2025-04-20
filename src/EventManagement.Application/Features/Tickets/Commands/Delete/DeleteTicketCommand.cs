@@ -51,7 +51,6 @@ public class DeleteTicketCommand : IRequest<DeletedTicketResponse>
         /// <param name="cancellationToken">A cancellation token for the asynchronous operation.</param>
         /// <returns>A <see cref="DeletedTicketResponse"/> representing the deleted ticket.</returns>
         /// <exception cref="NotFoundException">Thrown when no ticket is found with the specified ID.</exception>
-
         public async Task<DeletedTicketResponse> Handle(DeleteTicketCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

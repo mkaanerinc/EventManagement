@@ -21,21 +21,21 @@ public class CreateTicketCommandValidator : AbstractValidator<CreateTicketComman
     public CreateTicketCommandValidator()
     {
         RuleFor(t => t.EventId)
-            .NotEmpty().WithMessage("Etkinlik kimliği belirtilmelidir.");
+            .NotEmpty().WithMessage("Event ID must be specified.");
 
         RuleFor(t => t.TicketType)
-            .Must(BeAValidTicketType).WithMessage("Geçerli bir bilet türü seçilmelidir.");
+            .Must(BeAValidTicketType).WithMessage("A valid ticket type must be selected.");
 
         RuleFor(t => t.Price)
-            .NotNull().WithMessage("Fiyat belirtilmelidir.")
-            .GreaterThan(0).WithMessage("Fiyat sıfırdan büyük olmalıdır.");
+            .NotNull().WithMessage("Price must be specified.")
+            .GreaterThan(0).WithMessage("Price must be greater than zero.");
 
         RuleFor(t => t.QuantityAvailable)
-            .NotNull().WithMessage("Satışa sunulan miktar belirtilmelidir.")
-            .GreaterThanOrEqualTo(0).WithMessage("Miktar negatif olamaz.");
+            .NotNull().WithMessage("Available quantity must be specified.")
+            .GreaterThanOrEqualTo(0).WithMessage("Quantity cannot be negative.");
 
         RuleFor(t => t.QuantitySold)
-            .GreaterThanOrEqualTo(0).WithMessage("Satılan miktar negatif olamaz.");
+            .GreaterThanOrEqualTo(0).WithMessage("Sold quantity cannot be negative.");
     }
 
     /// <summary>

@@ -19,8 +19,8 @@ public class GetRemainingTicketCountEventQueryValidator : AbstractValidator<GetR
     /// </summary>
     public GetRemainingTicketCountEventQueryValidator()
     {
-        RuleFor(q => q.EventId)
-            .NotEmpty().WithMessage("Etkinlik ID'si boş olamaz.")
-            .NotEqual(Guid.Empty).WithMessage("Geçerli bir etkinlik ID'si girilmelidir.");
+        RuleFor(e => e.EventId)
+            .NotEmpty().WithMessage("Event ID cannot be empty.")
+            .NotEqual(Guid.Empty).WithMessage("A valid event ID must be provided.");
     }
 }

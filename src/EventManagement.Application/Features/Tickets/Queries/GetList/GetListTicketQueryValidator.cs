@@ -20,10 +20,10 @@ public class GetListTicketQueryValidator : AbstractValidator<GetListTicketQuery>
     public GetListTicketQueryValidator()
     {
         RuleFor(t => t.PageRequest.PageIndex)
-            .GreaterThan(0).WithMessage("Sayfa numarası 0'dan büyük olmalıdır.");
+            .GreaterThan(0).WithMessage("Page number must be greater than 0.");
 
         RuleFor(t => t.PageRequest.PageSize)
-            .GreaterThan(0).WithMessage("Sayfa boyutu 0'dan büyük olmalıdır.")
-            .LessThanOrEqualTo(100).WithMessage("Sayfa boyutu en fazla 100 olabilir.");
+            .GreaterThan(0).WithMessage("Page size must be greater than 0.")
+            .LessThanOrEqualTo(100).WithMessage("Page size can be at most 100.");
     }
 }

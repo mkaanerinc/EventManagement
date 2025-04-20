@@ -62,7 +62,7 @@ public class GetAvailableTicketQuery : IRequest<GetListResponse<GetAvailableTick
         public async Task<GetListResponse<GetAvailableTicketListItemDto>> Handle(GetAvailableTicketQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(
-                async () => await _ticketBusinessRules.CheckEventExistsByIdAsync(request.EventId)
+                async () => await _ticketBusinessRules.EnsureEventExists(request.EventId)
             );
 
             Paginate<Ticket> availableTickets = await _ticketRepository.GetListAsync(

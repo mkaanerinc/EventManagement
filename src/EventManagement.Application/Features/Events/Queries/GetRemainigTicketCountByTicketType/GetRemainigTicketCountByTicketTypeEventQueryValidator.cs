@@ -19,11 +19,11 @@ public class GetRemainigTicketCountByTicketTypeEventQueryValidator : AbstractVal
     /// </summary>
     public GetRemainigTicketCountByTicketTypeEventQueryValidator()
     {
-        RuleFor(q => q.EventId)
-            .NotEmpty().WithMessage("Etkinlik ID'si boş olamaz.")
-            .NotEqual(Guid.Empty).WithMessage("Geçerli bir etkinlik ID'si girilmelidir.");
+        RuleFor(e => e.EventId)
+            .NotEmpty().WithMessage("Event ID cannot be empty.")
+            .NotEqual(Guid.Empty).WithMessage("A valid event ID must be provided.");
 
-        RuleFor(q => q.TicketType)
-            .IsInEnum().WithMessage("Geçerli bir bilet türü seçilmelidir.");
+        RuleFor(e => e.TicketType)
+            .IsInEnum().WithMessage("A valid ticket type must be selected.");
     }
 }

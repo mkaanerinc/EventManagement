@@ -20,15 +20,15 @@ public class GetListByDateEventQueryValidator : AbstractValidator<GetListByDateE
     public GetListByDateEventQueryValidator()
     {
         RuleFor(e => e.PageRequest.PageIndex)
-            .GreaterThan(0).WithMessage("Sayfa numarası 0'dan büyük olmalıdır.");
+            .GreaterThan(0).WithMessage("Page number must be greater than 0.");
 
         RuleFor(e => e.PageRequest.PageSize)
-            .GreaterThan(0).WithMessage("Sayfa boyutu 0'dan büyük olmalıdır.")
-            .LessThanOrEqualTo(100).WithMessage("Sayfa boyutu en fazla 100 olabilir.");
+            .GreaterThan(0).WithMessage("Page size must be greater than 0.")
+            .LessThanOrEqualTo(100).WithMessage("Page size can be at most 100.");
 
         RuleFor(e => e.EventAt)
-            .NotEmpty().WithMessage("Etkinlik tarihi boş olamaz.")
+            .NotEmpty().WithMessage("Event date cannot be empty.")
             .Must(date => date.Date >= DateTimeOffset.MinValue.Date)
-            .WithMessage("Geçerli bir etkinlik tarihi girilmelidir.");
+            .WithMessage("A valid event date must be provided.");
     }
 }

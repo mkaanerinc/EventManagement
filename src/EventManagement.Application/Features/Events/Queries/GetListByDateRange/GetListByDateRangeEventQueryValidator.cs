@@ -20,20 +20,20 @@ public class GetListByDateRangeEventQueryValidator : AbstractValidator<GetListBy
     public GetListByDateRangeEventQueryValidator()
     {
         RuleFor(e => e.PageRequest.PageIndex)
-            .GreaterThan(0).WithMessage("Sayfa numarası 0'dan büyük olmalıdır.");
+            .GreaterThan(0).WithMessage("Page number must be greater than 0.");
 
         RuleFor(e => e.PageRequest.PageSize)
-            .GreaterThan(0).WithMessage("Sayfa boyutu 0'dan büyük olmalıdır.")
-            .LessThanOrEqualTo(100).WithMessage("Sayfa boyutu en fazla 100 olabilir.");
+            .GreaterThan(0).WithMessage("Page size must be greater than 0.")
+            .LessThanOrEqualTo(100).WithMessage("Page size can be at most 100.");
 
         RuleFor(e => e.StartAt)
-            .NotEmpty().WithMessage("Başlangıç tarihi boş olamaz.");
+            .NotEmpty().WithMessage("Start date cannot be empty.");
 
         RuleFor(e => e.EndAt)
-            .NotEmpty().WithMessage("Bitiş tarihi boş olamaz.");
+            .NotEmpty().WithMessage("End date cannot be empty.");
 
         RuleFor(e => e)
             .Must(e => e.StartAt <= e.EndAt)
-            .WithMessage("Başlangıç tarihi, bitiş tarihinden sonra olamaz.");
+            .WithMessage("Start date cannot be after the end date.");
     }
 }

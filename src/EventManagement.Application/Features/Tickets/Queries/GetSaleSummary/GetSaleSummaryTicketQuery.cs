@@ -51,7 +51,7 @@ public class GetSaleSummaryTicketQuery : IRequest<GetSaleSummaryTicketResponse>
         public async Task<GetSaleSummaryTicketResponse> Handle(GetSaleSummaryTicketQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(
-                async () => await _ticketBusinessRules.CheckEventExistsByIdAsync(request.EventId)
+                async () => await _ticketBusinessRules.EnsureEventExists(request.EventId)
             );
 
             Paginate<Ticket> tickets = await _ticketRepository.GetListAsync(
