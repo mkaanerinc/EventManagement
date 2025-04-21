@@ -1,7 +1,6 @@
 ﻿using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using EventManagement.Application.Features.Attendees.Constants;
-using EventManagement.Application.Features.Tickets.Constants;
 using EventManagement.Application.Services.Repositories;
 using EventManagement.Domain.Entities;
 using System;
@@ -95,5 +94,20 @@ public class AttendeeBusinessRules : BaseBusinessRules
 
         if(ticket == null || ticket!.QuantityAvailable == 0)
             throw new BusinessException(AttendeesMessages.TicketNotAvailableForSale);
+    }
+
+    /// <summary>
+    /// Ensures that the specified attendee has not already checked in.
+    /// </summary>
+    /// <param name="attendee">The attendee to check.</param>
+    /// <returns>A completed task if the attendee has not checked in.</returns>
+    /// <exception cref="BusinessException">
+    /// Thrown when the attendee has already checked in.</exception>
+    public Task EnsureAttendeeNotCheckedIn(Attendee attendee)
+    {
+        if (attendee.IsCheckedIn)
+            throw new BusinessException(AttendeesMessages.AlreadyCheckedIn);
+
+        return Task.CompletedTask;
     }
 }

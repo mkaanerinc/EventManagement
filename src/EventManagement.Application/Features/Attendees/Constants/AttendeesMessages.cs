@@ -30,4 +30,14 @@ public class AttendeesMessages
     /// Message indicating that the ticket is either not available for sale or out of stock.
     /// </summary>
     public const string TicketNotAvailableForSale = "Ticket must be available for sale and in stock.";
+
+    /// <summary>
+    /// Message indicating that an attendee has already checked in.
+    /// </summary>
+    public const string AlreadyCheckedIn = "Attendee has already checked in.";
+
+    /// <summary>
+    /// Message indicating that an attendee successfully checked in.
+    /// </summary>
+    public const string AttendeeCheckedIn = "Attendee successfully checked in.";
 }
