@@ -22,6 +22,11 @@ public class AttendeesMessages
     public const string NotFoundTicket = "Ticket does not exist.";
 
     /// <summary>
+    /// Message indicating that the specified event was not found.
+    /// </summary>
+    public const string NotFoundEvent = "Event does not exist.";
+
+    /// <summary>
     /// Message indicating that the ticket is either not available for sale or out of stock.
     /// </summary>
     public const string TicketNotAvailableForSale = "Ticket must be available for sale and in stock.";

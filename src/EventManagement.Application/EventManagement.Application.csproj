@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Attendees\Queries\" />
+    <Folder Include="Features\Attendees\Queries\GetCountByEvent\" />
   </ItemGroup>
 
 </Project>

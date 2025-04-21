@@ -1,6 +1,7 @@
 ﻿using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using EventManagement.Application.Features.Attendees.Constants;
+using EventManagement.Application.Features.Tickets.Constants;
 using EventManagement.Application.Services.Repositories;
 using EventManagement.Domain.Entities;
 using System;
@@ -18,16 +19,19 @@ public class AttendeeBusinessRules : BaseBusinessRules
 {
     private readonly IAttendeeRepository _attendeeRepository;
     private readonly ITicketRepository _ticketRepository;
+    private readonly IEventRepository _eventRepository;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AttendeeBusinessRules"/> class.
     /// </summary>
     /// <param name="attendeeRepository">The attendee repository used to access attendee data.</param>
     /// <param name="ticketRepository">The ticket repository used to access ticket data.</param>
-    public AttendeeBusinessRules(IAttendeeRepository attendeeRepository, ITicketRepository ticketRepository)
+    /// <param name="eventRepository">The event repository used to access event data.</param>
+    public AttendeeBusinessRules(IAttendeeRepository attendeeRepository, ITicketRepository ticketRepository, IEventRepository eventRepository)
     {
         _attendeeRepository = attendeeRepository;
         _ticketRepository = ticketRepository;
+        _eventRepository = eventRepository;
     }
 
     /// <summary>
@@ -60,6 +64,21 @@ public class AttendeeBusinessRules : BaseBusinessRules
         bool exists = await _ticketRepository.AnyAsync(t => t.Id == ticketId);
         if (!exists)
             throw new BusinessException(AttendeesMessages.NotFoundTicket);
+    }
+
+    /// <summary>
+    /// Ensures that the specified event exists in the system.
+    /// </summary>
+    /// <param name="eventId">The unique identifier of the event.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="BusinessException">
+    /// Thrown when no event with the given <paramref name="eventId"/> is found.
+    /// </exception>
+    public async Task EnsureEventExists(Guid eventId)
+    {
+        var exists = await _eventRepository.AnyAsync(e => e.Id == eventId);
+        if (!exists)
+            throw new BusinessException(AttendeesMessages.NotFoundEvent);
     }
 
     /// <summary>

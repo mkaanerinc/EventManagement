@@ -1,7 +1,14 @@
 ﻿using AutoMapper;
+using Core.Application.Models.Responses;
+using Core.Infrastructure.Persistence.Paging;
 using EventManagement.Application.Features.Attendees.Commands.Create;
 using EventManagement.Application.Features.Attendees.Commands.Delete;
 using EventManagement.Application.Features.Attendees.Commands.Update;
+using EventManagement.Application.Features.Attendees.Queries.GetById;
+using EventManagement.Application.Features.Attendees.Queries.GetList;
+using EventManagement.Application.Features.Attendees.Queries.GetListByEventId;
+using EventManagement.Application.Features.Attendees.Queries.GetListByTicketId;
+using EventManagement.Application.Features.Tickets.Queries.GetById;
 using EventManagement.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -50,5 +57,40 @@ public class MappingProfiles : Profile
         /// Maps between <see cref="Attendee"/> and <see cref="UpdatedAttendeeResponse"/> in both directions.
         /// </summary>
         CreateMap<Attendee, UpdatedAttendeeResponse>().ReverseMap();
+
+        /// <summary>
+        /// Maps between <see cref="Attendee"/> and <see cref="GetListAttendeeListItemDto"/> in both directions.
+        /// </summary>
+        CreateMap<Attendee, GetListAttendeeListItemDto>().ReverseMap();
+
+        /// <summary>
+        /// Maps between <see cref="Attendee"/> and <see cref="GetListByTicketIdAttendeeListItemDto"/> in both directions.
+        /// </summary>
+        CreateMap<Attendee, GetListByTicketIdAttendeeListItemDto>().ReverseMap();
+
+        /// <summary>
+        /// Maps between <see cref="Attendee"/> and <see cref="GetListByEventIdAttendeeListItemDto"/> in both directions.
+        /// </summary>
+        CreateMap<Attendee, GetListByEventIdAttendeeListItemDto>().ReverseMap();
+
+        /// <summary>
+        /// Maps between <see cref="Attendee"/> and <see cref="GetByIdAttendeeResponse"/> in both directions.
+        /// </summary>
+        CreateMap<Attendee, GetByIdAttendeeResponse>().ReverseMap();
+
+        /// <summary>
+        /// Maps between <see cref="Attendee"/> and <see cref="GetListResponse<GetListAttendeeListItemDto>>"/> in both directions.
+        /// </summary>
+        CreateMap<Paginate<Attendee>, GetListResponse<GetListAttendeeListItemDto>>().ReverseMap();
+
+        /// <summary>
+        /// Maps between <see cref="Attendee"/> and <see cref="GetListResponse<GetListByTicketIdAttendeeListItemDto>>"/> in both directions.
+        /// </summary>
+        CreateMap<Paginate<Attendee>, GetListResponse<GetListByTicketIdAttendeeListItemDto>>().ReverseMap();
+
+        /// <summary>
+        /// Maps between <see cref="Attendee"/> and <see cref="GetListResponse<GetListByEventIdAttendeeListItemDto>>"/> in both directions.
+        /// </summary>
+        CreateMap<Paginate<Attendee>, GetListResponse<GetListByEventIdAttendeeListItemDto>>().ReverseMap();
     }
 }
