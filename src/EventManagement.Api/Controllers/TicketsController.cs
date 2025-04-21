@@ -135,7 +135,6 @@ public class TicketsController : BaseController
     /// <returns>A paginated list of available tickets.</returns>
     /// <response code="200">List retrieved successfully.</response>
     /// <response code="400">Invalid input provided.</response>
-    /// <response code="404">No tickets found for the specified event.</response>
     /// <response code="500">Internal server error occurred.</response>
     [HttpGet("available/{eventId}")]
     [ProducesResponseType(typeof(GetListResponse<GetAvailableTicketListItemDto>), StatusCodes.Status200OK)]
@@ -157,12 +156,10 @@ public class TicketsController : BaseController
     /// <returns>Details of the tickets associated with the specified event.</returns>
     /// <response code="200">Ticket details retrieved successfully.</response>
     /// <response code="400">Invalid event ID provided.</response>
-    /// <response code="404">No tickets found for the specified event.</response>
     /// <response code="500">Internal server error occurred.</response>
     [HttpGet("by-event/{eventId}")]
     [ProducesResponseType(typeof(GetByEventIdTicketResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetByEventId([FromRoute] Guid eventId)
     {
@@ -180,12 +177,10 @@ public class TicketsController : BaseController
     /// <returns>A summary of ticket sales for the specified event.</returns>
     /// <response code="200">Sale summary retrieved successfully.</response>
     /// <response code="400">Invalid event ID provided.</response>
-    /// <response code="404">Sale summary not found for the specified event.</response>
     /// <response code="500">Internal server error occurred.</response>
     [HttpGet("{eventId}/sale-summary")]
     [ProducesResponseType(typeof(GetSaleSummaryTicketResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetSaleSummary([FromRoute] Guid eventId)
     {

@@ -1,4 +1,5 @@
-﻿using EventManagement.Application.Features.Events.Rules;
+﻿using Core.Application.Rules;
+using EventManagement.Application.Features.Events.Rules;
 using EventManagement.Application.Services.Repositories;
 using EventManagement.Domain.Enums;
 using MediatR;
@@ -54,7 +55,9 @@ public class GetRemainigTicketCountByTicketTypeEventQuery : IRequest<GetRemainig
         /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
         public async Task<GetRemainigTicketCountByTicketTypeEventResponse> Handle(GetRemainigTicketCountByTicketTypeEventQuery request, CancellationToken cancellationToken)
         {
-            await _eventBusinessRules.CheckEventExistsByIdAsync(request.EventId);
+            await RuleRunner.RunAsync(
+                async () => await _eventBusinessRules.CheckEventExistsByIdAsync(request.EventId)
+            );           
 
             int remainingCount = await _eventRepository.GetRemainingTicketCountAsync(
             eventPredicate: e => e.Id == request.EventId,

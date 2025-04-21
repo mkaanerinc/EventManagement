@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Rules;
 using EventManagement.Application.Features.Events.Rules;
 using EventManagement.Application.Services.Repositories;
 using EventManagement.Domain.Entities;
@@ -82,7 +83,9 @@ public class UpdateEventCommand : IRequest<UpdatedEventResponse>
         /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
         public async Task<UpdatedEventResponse> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
-            await _eventBusinessRules.CheckEventExistsByIdAsync(request.Id);
+            await RuleRunner.RunAsync(
+                async () => await _eventBusinessRules.CheckEventExistsByIdAsync(request.Id)
+            );
 
             Event? updatedEvent = await _eventRepository.GetAsync
                 (predicate:e => e.Id == request.Id, 
