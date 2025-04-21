@@ -3,6 +3,7 @@ using Core.Application.Models.Responses;
 using Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
 using EventManagement.Application.Features.Tickets.Commands.Create;
 using EventManagement.Application.Features.Tickets.Commands.Delete;
+using EventManagement.Application.Features.Tickets.Commands.SellTicket;
 using EventManagement.Application.Features.Tickets.Commands.Update;
 using EventManagement.Application.Features.Tickets.Queries.GetAvailable;
 using EventManagement.Application.Features.Tickets.Queries.GetByEventId;
@@ -79,6 +80,27 @@ public class TicketsController : BaseController
     public async Task<IActionResult> Delete([FromBody] DeleteTicketCommand deleteTicketCommand)
     {
         DeletedTicketResponse response = await Mediator!.Send(deleteTicketCommand);
+
+        return Ok(response);
+    }
+
+    /// <summary>
+    /// Sells a ticket and registers the attendee.
+    /// </summary>
+    /// <param name="sellTicketCommand">The ticket sale command containing ticket ID and attendee details.</param>
+    /// <returns>The result of the ticket sale operation.</returns>
+    /// <response code="200">Ticket sold successfully and attendee registered.</response>
+    /// <response code="400">Invalid input data.</response>
+    /// <response code="404">Ticket not found with the specified ID.</response>
+    /// <response code="500">Server error.</response>
+    [HttpPost("sell-ticket")]
+    [ProducesResponseType(typeof(SoldTicketResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(NotFoundProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> SellTicket([FromBody] SellTicketCommand sellTicketCommand)
+    {
+        SoldTicketResponse response = await Mediator!.Send(sellTicketCommand);
 
         return Ok(response);
     }

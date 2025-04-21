@@ -30,4 +30,9 @@ public class TicketsMessages
     /// Message indicating that the number of tickets sold cannot exceed the available quantity.
     /// </summary>
     public const string QuantitySoldExceedsAvailable = "The number of tickets sold cannot exceed the available quantity.";
+
+    /// <summary>
+    /// Message indicating that a ticket sold successfully.
+    /// </summary>
+    public const string TicketSoldSuccessfully = "Ticket sold successfully.";
 }
