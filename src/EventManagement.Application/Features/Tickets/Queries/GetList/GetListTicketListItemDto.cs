@@ -13,7 +13,7 @@ namespace EventManagement.Application.Features.Tickets.Queries.GetList;
 public class GetListTicketListItemDto
 {
     /// <summary>
-    /// Represents a data transfer object (DTO) for listing ticket items in a paginated ticket list response.
+    /// Gets or sets the unique identifier of the updated ticket.
     /// </summary>
     public Guid Id { get; set; }
 
