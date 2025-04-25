@@ -45,7 +45,7 @@ public class GetCountByEventAttendeeQuery : IRequest<GetCountByEventAttendeeResp
         /// <param name="request">The query request containing the event ID.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="GetCountByEventAttendeeResponse"/> with the result.</returns>
-        /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
+        /// <exception cref="BusinessException">Thrown when no event is found with the specified event ID.</exception>
         public async Task<GetCountByEventAttendeeResponse> Handle(GetCountByEventAttendeeQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

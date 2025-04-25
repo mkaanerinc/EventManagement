@@ -50,7 +50,7 @@ public class GetByIdAttendeeQuery : IRequest<GetByIdAttendeeResponse>
         /// <param name="request">The query request containing the attendee's identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="GetByIdAttendeeResponse"/> containing the details of the attendee.</returns>
-        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified attendee ID.</exception>
         public async Task<GetByIdAttendeeResponse> Handle(GetByIdAttendeeQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

@@ -47,7 +47,7 @@ public class GetSaleSummaryTicketQuery : IRequest<GetSaleSummaryTicketResponse>
         /// <param name="request">The query request containing the event's identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="GetSaleSummaryTicketResponse"/> containing the ticket sales summary.</returns>
-        /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
+        /// <exception cref="BusinessException">Thrown when no event is found with the specified event ID.</exception>
         public async Task<GetSaleSummaryTicketResponse> Handle(GetSaleSummaryTicketQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

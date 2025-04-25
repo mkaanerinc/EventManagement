@@ -52,7 +52,7 @@ public class GetRemainigTicketCountByTicketTypeEventQuery : IRequest<GetRemainig
         /// <param name="request">The query request containing the event ID.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="GetRemainigTicketCountByTicketTypeEventResponse"/> with the result.</returns>
-        /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no event is found with the specified event ID.</exception>
         public async Task<GetRemainigTicketCountByTicketTypeEventResponse> Handle(GetRemainigTicketCountByTicketTypeEventQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

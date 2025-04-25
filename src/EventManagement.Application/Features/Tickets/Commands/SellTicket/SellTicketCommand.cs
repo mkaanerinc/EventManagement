@@ -60,7 +60,7 @@ public class SellTicketCommand : IRequest<SoldTicketResponse>
         /// <param name="request">The sell ticket command containing ticket ID and attendee details.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns>The response object containing details of the sold ticket.</returns>
-        /// <exception cref="NotFoundException">Thrown when no ticket is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no ticket is found with the specified ticket ID.</exception>
         public async Task<SoldTicketResponse> Handle(SellTicketCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

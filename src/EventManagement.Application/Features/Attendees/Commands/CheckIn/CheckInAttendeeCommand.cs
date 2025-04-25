@@ -47,7 +47,7 @@ public class CheckInAttendeeCommand : IRequest<CheckInAttendeeResponse>
         /// <param name="request">The command containing the attendee ID.</param>
         /// <param name="cancellationToken">A token to cancel the operation.</param>
         /// <returns>A task representing the asynchronous operation, with the result of the check-in operation.</returns>
-        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified attendee ID.</exception>
         /// <exception cref="BusinessException">Thrown when attendee is already checked in.</exception>
         public async Task<CheckInAttendeeResponse> Handle(CheckInAttendeeCommand request, CancellationToken cancellationToken)
         {

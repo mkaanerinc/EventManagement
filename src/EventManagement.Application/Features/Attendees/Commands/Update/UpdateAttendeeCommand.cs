@@ -75,7 +75,9 @@ public class UpdateAttendeeCommand : IRequest<UpdatedAttendeeResponse>
         /// <param name="request">The update attendee command containing attendee details.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns>The response object containing details of the updated attendee.</returns>
-        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified attendee ID.</exception>
+        /// <exception cref="BusinessException">Thrown when no attendee is found with the specified ticket ID.</exception>
+        /// <exception cref="BusinessException">Thrown when the ticket does not exist or has no available quantity.</exception>
         public async Task<UpdatedAttendeeResponse> Handle(UpdateAttendeeCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

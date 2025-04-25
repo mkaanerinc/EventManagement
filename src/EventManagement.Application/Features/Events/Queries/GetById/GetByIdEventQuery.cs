@@ -50,7 +50,7 @@ public class GetByIdEventQuery : IRequest<GetByIdEventResponse>
         /// <param name="request">The query request containing the event's identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="GetByIdEventResponse"/> containing the details of the event.</returns>
-        /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no event is found with the specified event ID.</exception>
         public async Task<GetByIdEventResponse> Handle(GetByIdEventQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

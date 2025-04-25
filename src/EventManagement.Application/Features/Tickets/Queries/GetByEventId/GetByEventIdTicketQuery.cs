@@ -50,7 +50,7 @@ public class GetByEventIdTicketQuery : IRequest<GetByEventIdTicketResponse>
         /// <param name="request">The query request containing the ticket's identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="GetByEventIdTicketResponse"/> containing the details of the ticket.</returns>
-        /// <exception cref="NotFoundException">Thrown when no ticket is found with the specified event ID.</exception>
+        /// <exception cref="BusinessException">Thrown when no event is found with the specified event ID.</exception>
         public async Task<GetByEventIdTicketResponse> Handle(GetByEventIdTicketQuery request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

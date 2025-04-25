@@ -80,7 +80,7 @@ public class UpdateEventCommand : IRequest<UpdatedEventResponse>
         /// <param name="request">The update event command containing event details.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns>The response object containing details of the updated event.</returns>
-        /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no event is found with the specified event ID.</exception>
         public async Task<UpdatedEventResponse> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

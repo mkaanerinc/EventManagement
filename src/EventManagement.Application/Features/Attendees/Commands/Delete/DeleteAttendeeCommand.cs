@@ -50,7 +50,7 @@ public class DeleteAttendeeCommand : IRequest<DeletedAttendeeResponse>
         /// <param name="request">The delete attendee command containing the attendee ID.</param>
         /// <param name="cancellationToken">A cancellation token for the asynchronous operation.</param>
         /// <returns>A <see cref="DeletedAttendeeResponse"/> representing the deleted attendee.</returns>
-        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no attendee is found with the specified attendee ID.</exception>
         public async Task<DeletedAttendeeResponse> Handle(DeleteAttendeeCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

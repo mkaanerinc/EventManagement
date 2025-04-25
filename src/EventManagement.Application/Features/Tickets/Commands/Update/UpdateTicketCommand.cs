@@ -76,7 +76,10 @@ public class UpdateTicketCommand : IRequest<UpdatedTicketResponse>
         /// <param name="request">The update ticket command containing ticket details.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns>The response object containing details of the updated ticket.</returns>
-        /// <exception cref="NotFoundException">Thrown when no ticket is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no ticket is found with the specified ticket ID.</exception>
+        /// <exception cref="BusinessException">Thrown when no event is found with the specified event ID.</exception>
+        /// <exception cref="BusinessException">Thrown when quantityAvailable exceeds the event's total capacity.</exception>
+        /// <exception cref="BusinessException">Thrown when quantitySold exceeds quantityAvailable.</exception>
         public async Task<UpdatedTicketResponse> Handle(UpdateTicketCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

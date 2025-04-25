@@ -50,7 +50,7 @@ public class DeleteEventCommand : IRequest<DeletedEventResponse>
         /// <param name="request">The delete event command containing the event ID.</param>
         /// <param name="cancellationToken">A cancellation token for the asynchronous operation.</param>
         /// <returns>A <see cref="DeletedEventResponse"/> representing the deleted event.</returns>
-        /// <exception cref="NotFoundException">Thrown when no event is found with the specified ID.</exception>
+        /// <exception cref="NotFoundException">Thrown when no event is found with the specified event ID.</exception>
         public async Task<DeletedEventResponse> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(
