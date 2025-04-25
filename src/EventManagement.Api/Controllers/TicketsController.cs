@@ -6,13 +6,14 @@ using EventManagement.Application.Features.Tickets.Commands.Delete;
 using EventManagement.Application.Features.Tickets.Commands.SellTicket;
 using EventManagement.Application.Features.Tickets.Commands.Update;
 using EventManagement.Application.Features.Tickets.Queries.GetAvailable;
-using EventManagement.Application.Features.Tickets.Queries.GetByEventId;
+using EventManagement.Application.Features.Tickets.Queries.GetListByEventId;
 using EventManagement.Application.Features.Tickets.Queries.GetById;
 using EventManagement.Application.Features.Tickets.Queries.GetList;
 using EventManagement.Application.Features.Tickets.Queries.GetSaleSummary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ValidationProblemDetails = Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails.ValidationProblemDetails;
+using EventManagement.Application.Features.Attendees.Queries.GetListByEventId;
 
 namespace EventManagement.Api.Controllers;
 
@@ -172,24 +173,25 @@ public class TicketsController : BaseController
     }
 
     /// <summary>
-    /// Retrieves ticket details for a specific event.
+    /// Retrieves a paginated list of tickets with specified event ID.
     /// </summary>
+    /// <param name="pageRequest">Pagination parameters.</param>
     /// <param name="eventId">The unique identifier of the event.</param>
-    /// <returns>Details of the tickets associated with the specified event.</returns>
+    /// <returns>A paginated list of tickets with specified event ID.</returns>
     /// <response code="200">Ticket details retrieved successfully.</response>
     /// <response code="400">Invalid event ID provided.</response>
     /// <response code="500">Internal server error occurred.</response>
     [HttpGet("by-event/{eventId}")]
-    [ProducesResponseType(typeof(GetByEventIdTicketResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GetListResponse<GetListByEventIdTicketListItemDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetByEventId([FromRoute] Guid eventId)
+    public async Task<IActionResult> GetListByEventId([FromQuery] PageRequest pageRequest, Guid eventId)
     {
-        GetByEventIdTicketQuery getByEventIdTicketQuery = new() { EventId = eventId };
+        GetListByEventIdTicketQuery getListByEventIdTicketQuery = new() { PageRequest = pageRequest, EventId = eventId };
 
-        GetByEventIdTicketResponse response = await Mediator!.Send(getByEventIdTicketQuery);
+        GetListResponse<GetListByEventIdTicketListItemDto> response = await Mediator!.Send(getListByEventIdTicketQuery);
 
-        return Ok(response);
+        return Ok(response); ;
     }
 
     /// <summary>

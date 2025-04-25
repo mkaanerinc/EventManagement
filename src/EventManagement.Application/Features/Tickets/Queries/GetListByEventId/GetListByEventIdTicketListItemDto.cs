@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventManagement.Application.Features.Tickets.Queries.GetByEventId;
+namespace EventManagement.Application.Features.Tickets.Queries.GetListByEventId;
 
 /// <summary>
-/// Represents the response data for retrieving a ticket by its event identifier.
+/// Represents a data transfer object (DTO) for listing tickets with the specified event ID.
 /// </summary>
-public class GetByEventIdTicketResponse
+public class GetListByEventIdTicketListItemDto
 {
     /// <summary>
     /// Gets or sets the unique identifier of the ticket.
