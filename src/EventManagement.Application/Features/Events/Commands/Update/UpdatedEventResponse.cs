@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventManagement.Application.Features.Events.Commands.Update;
 
+/// <summary>
+/// Represents the response model returned after successfully updating an event.
+/// </summary>
 public class UpdatedEventResponse
 {
     /// <summary>

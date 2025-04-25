@@ -70,6 +70,8 @@ public class CreateAttendeeCommand : IRequest<CreatedAttendeeResponse>
         /// <param name="request">The create attendee command containing attendee details.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns>The response object containing details of the created attendee.</returns>
+        /// <exception cref="BusinessException">Thrown when no ticket is found with the specified ticket ID.</exception>
+        /// <exception cref="BusinessException">Thrown when the ticket does not exist or has no available quantity.</exception>
         public async Task<CreatedAttendeeResponse> Handle(CreateAttendeeCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(

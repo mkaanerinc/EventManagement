@@ -71,6 +71,8 @@ public class CreateTicketCommand : IRequest<CreatedTicketResponse>
         /// <param name="request">The create ticket command containing ticket details.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns>The response object containing details of the created ticket.</returns>
+        /// <exception cref="BusinessException">Thrown when no event is found with the specified event ID.</exception>
+        /// <exception cref="BusinessException">Thrown when quantityAvailable exceeds the event's total capacity.</exception>
         public async Task<CreatedTicketResponse> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
         {
             await RuleRunner.RunAsync(
