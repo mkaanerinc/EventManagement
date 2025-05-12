@@ -10,7 +10,6 @@ using EventManagement.Application.Features.Reports.Queries.GetListByEventId;
 using EventManagement.Application.Features.Reports.Queries.GetListCompleted;
 using EventManagement.Application.Features.Reports.Queries.GetListFailed;
 using EventManagement.Application.Features.Reports.Queries.GetListPending;
-using EventManagement.Application.Features.Reports.Queries.GetSummaryByEventId;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ValidationProblemDetails = Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails.ValidationProblemDetails;
@@ -210,27 +209,6 @@ public class ReportsController : BaseController
         GetListByEventIdReportQuery getListByEventIdReportQuery = new() { PageRequest = pageRequest, EventId = eventId };
 
         GetListResponse<GetListByEventIdReportListItemDto> response = await Mediator!.Send(getListByEventIdReportQuery);
-
-        return Ok(response);
-    }
-
-    /// <summary>
-    /// Retrieves a report summary with specified event ID.
-    /// </summary>
-    /// <param name="eventId">The unique identifier of the event.</param>
-    /// <returns>A report summary with specified event ID.</returns>
-    /// <response code="200">Report summary successfully.</response>
-    /// <response code="400">Invalid input.</response>
-    /// <response code="500">Internal server error.</response>
-    [HttpGet("report-summary-by-event/{eventId}")]
-    [ProducesResponseType(typeof(GetSummaryByEventIdReportResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(InternalServerErrorProblemDetails), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetSummaryByEventId([FromRoute] Guid eventId)
-    {
-        GetSummaryByEventIdReportQuery getSummaryByEventIdReportQuery = new() { EventId = eventId };
-
-        GetSummaryByEventIdReportResponse response = await Mediator!.Send(getSummaryByEventIdReportQuery);
 
         return Ok(response);
     }

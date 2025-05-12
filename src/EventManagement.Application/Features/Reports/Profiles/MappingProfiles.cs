@@ -16,8 +16,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EventManagement.Domain.ValueObjects;
-using EventManagement.Application.Features.Reports.Queries.GetSummaryByEventId;
 
 namespace EventManagement.Application.Features.Reports.Profiles;
 
@@ -90,11 +88,6 @@ public class MappingProfiles : Profile
         /// Maps between <see cref="Report"/> and <see cref="GetByIdReportResponse"/> in both directions.
         /// </summary>
         CreateMap<Report, GetByIdReportResponse>().ReverseMap();
-
-        /// <summary>
-        /// Maps between <see cref="ReportSummary"/> and <see cref="GetSummaryByEventIdReportResponse"/> in both directions.
-        /// </summary>
-        CreateMap<ReportSummary, GetSummaryByEventIdReportResponse>().ReverseMap();
 
         /// <summary>
         /// Maps between <see cref="Report"/> and <see cref="GetListResponse<GetListByEventIdReportListItemDto>>"/> in both directions.

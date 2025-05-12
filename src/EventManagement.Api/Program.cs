@@ -1,13 +1,13 @@
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using EventManagement.Application;
-using EventManagement.Infrastructure.Persistence;
+using EventManagement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
