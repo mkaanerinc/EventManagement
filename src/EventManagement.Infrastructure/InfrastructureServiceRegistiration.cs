@@ -30,7 +30,7 @@ public static class InfrastructureServiceRegistiration
         services.AddPersistenceServices(configuration);
 
         // Register persistence services (e.g., database context, repositories)
-        services.AddRabbitMQ();
+        services.AddRabbitMQ(configuration);
 
         // Register the RabbitMQ producer as a scoped service
         services.AddScoped<IRabbitMQProducer, RabbitMQProducer>();
