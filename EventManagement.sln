@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F597ACAF-E553-4180-A773-042257BF51A6}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.Infrastructure", "src\EventManagement.Infrastructure\EventManagement.Infrastructure.csproj", "{F19A017D-87CD-4829-A132-BFA3723AA490}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.Api", "src\EventManagement.Api\EventManagement.Api.csproj", "{6AED2CDF-1484-497F-B65D-72BF22BD9BFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.WorkerService", "src\EventManagement.WorkerService\EventManagement.WorkerService.csproj", "{DE8E9F2A-BDF2-4FFA-803F-B99ACDEDA38F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{6AED2CDF-1484-497F-B65D-72BF22BD9BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AED2CDF-1484-497F-B65D-72BF22BD9BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AED2CDF-1484-497F-B65D-72BF22BD9BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8E9F2A-BDF2-4FFA-803F-B99ACDEDA38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8E9F2A-BDF2-4FFA-803F-B99ACDEDA38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8E9F2A-BDF2-4FFA-803F-B99ACDEDA38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8E9F2A-BDF2-4FFA-803F-B99ACDEDA38F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,6 @@ Global
 		{02C24B43-3F91-497D-8D1E-65BCFC7B17B7} = {F597ACAF-E553-4180-A773-042257BF51A6}
 		{F19A017D-87CD-4829-A132-BFA3723AA490} = {F597ACAF-E553-4180-A773-042257BF51A6}
 		{6AED2CDF-1484-497F-B65D-72BF22BD9BFF} = {F597ACAF-E553-4180-A773-042257BF51A6}
+		{DE8E9F2A-BDF2-4FFA-803F-B99ACDEDA38F} = {F597ACAF-E553-4180-A773-042257BF51A6}
 	EndGlobalSection
 EndGlobal

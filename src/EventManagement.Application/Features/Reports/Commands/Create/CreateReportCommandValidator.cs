@@ -26,16 +26,5 @@ public class CreateReportCommandValidator : AbstractValidator<CreateReportComman
 
         RuleFor(r => r.ReportType)
             .IsInEnum().WithMessage("Report type must be a valid value.");
-
-        RuleFor(r => r.ReportStatus)
-            .IsInEnum().WithMessage("Status must be a valid value.");
-
-        RuleFor(r => r.Result)
-            .NotEmpty().When(r => r.ReportStatus == ReportStatus.Completed)
-            .WithMessage("Result cannot be empty for a completed report.");
-
-        RuleFor(r => r.CompletedAt)
-            .NotEmpty().When(r => r.ReportStatus == ReportStatus.Completed && r.CompletedAt.HasValue)
-            .WithMessage("Completed at must be specified.");
     }
 }
