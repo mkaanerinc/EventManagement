@@ -14,7 +14,7 @@ EventManagement şunları sağlar:
 
 Bu proje, ölçeklenebilirlik ve genişletilebilirlik göz önünde bulundurularak geliştirilmektedir.
 
-## Özellikler (Planlanan)
+## Özellikler
 
 ### Etkinlik Yönetimi
 - Etkinlik oluşturma, güncelleme ve silme.
@@ -56,7 +56,7 @@ EventManagement/
 |   |── EventManagement.Domain/            # Entities, DTOs, enums
 |   |── EventManagement.Application/       # İş mantığı (commands, queries, handlers, iş kuralları)
 |   |── EventManagement.Infrastructure/    # Data access, repositories, RabbitMQ entegrasyonu
-|   |── EventManagement.Worker/            # Rapor üretimi için arka plan servisi
+|   |── EventManagement.WorkerService/     # Rapor üretimi için arka plan servisi
 |   
 |── tests/
 |   |── EventManagement.UnitTests/         # Birim testleri
@@ -84,13 +84,13 @@ Varlık ilişkileri:
 Projenin geliştirme süreci aşağıdaki adımlarla ilerleyecektir:
 
 - [X] **Başlangıç Kurulumu**: İlk proje yapısını ve çözüm dosyasını oluşturma.
-- [ ] **Entities Eklenmesi**: Events, Tickets ve Attendees varlıklarının eklenmesi.
-- [ ] **Veritabanı İşlemleri**: Veritabanı bağlantısının gerçekleştirilmesi.
-- [ ] **CRUD İşlemleri**: Events ve Tickets için oluşturma, okuma, güncelleme ve silme (CRUD) işlevlerini uygulama.
-- [ ] **Katılımcı Yönetimi**: Katılımcı takibi ve etkinlik sırasında giriş yapma (check-in) işlevselliğini ekleme.
-- [ ] **Doğrulama**: FluentValidation ile varlık doğrulama kurallarını uygulama.
-- [ ] **Asenkron Raporlama**: RabbitMQ entegrasyonu ile asenkron rapor üretim sistemini kurma.
-- [ ] **Raporlama Özellikleri**: Worker Service kullanarak bilet satışları ve katılımcı raporlarını geliştirme.
+- [X] **Entities Eklenmesi**: Events, Tickets ve Attendees varlıklarının eklenmesi.
+- [X] **Veritabanı İşlemleri**: Veritabanı bağlantısının gerçekleştirilmesi.
+- [X] **CRUD İşlemleri**: Events ve Tickets için oluşturma, okuma, güncelleme ve silme (CRUD) işlevlerini uygulama.
+- [X] **Katılımcı Yönetimi**: Katılımcı takibi ve etkinlik sırasında giriş yapma (check-in) işlevselliğini ekleme.
+- [X] **Doğrulama**: FluentValidation ile varlık doğrulama kurallarını uygulama.
+- [X] **Asenkron Raporlama**: RabbitMQ entegrasyonu ile asenkron rapor üretim sistemini kurma.
+- [X] **Raporlama Özellikleri**: Worker Service kullanarak bilet satışları ve katılımcı raporlarını geliştirme.
 - [ ] **Testler**: Birim testleri ve entegrasyon testlerini yazma ve test kapsamını artırma.
 - [ ] **Frontend Geliştirme**: Frontend teknolojisini (Blazor, Angular veya React) seçme ve kullanıcı arayüzünü uygulama.
 
@@ -122,7 +122,7 @@ Projenin geliştirme süreci aşağıdaki adımlarla ilerleyecektir:
    
 5. **Worker Servisini çalıştırın (raporlama için)**:
    ```bash
-   dotnet run --project EventManagement.Worker
+   dotnet run --project EventManagement.WorkerService
    ```
 ### Yapılandırma
 - appsettings.json dosyasında RabbitMQ ayarlarını (host, kuyruk adı vb.) yapılandırın.
