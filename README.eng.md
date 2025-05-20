@@ -14,9 +14,9 @@ EventManagement is a system where:
 
 This project is built with scalability and extensibility in mind, leveraging modern technologies and architectural patterns.
 
-## Features (Planned)
+## Features
 
-### Event Managemen
+### Event Management
 - Create, update, and delete events.
 - Retrieve events by ID, date, or date range.
 - List upcoming events and check event capacity status.
@@ -56,11 +56,11 @@ EventManagement/
 |   |── EventManagement.Domain/            # Entities, DTOs, enums
 |   |── EventManagement.Application/       # Business logic (commands, queries, handlers)
 |   |── EventManagement.Infrastructure/    # Data access, repositories, RabbitMQ integration
-|   |── EventManagement.Worker/            # Background service for report generation
+|   |── EventManagement.WorkerService/     # Background service for report generation
 |   
 |── tests/
-|   |── EventManagement.UnitTests/         # Birim tests
-|   |── EventManagement.IntegrationTests/  # Entegrasyon tests
+|   |── EventManagement.UnitTests/         # Unit tests
+|   |── EventManagement.IntegrationTests/  # Integration tests
 |
 |── EventManagement.sln                    # Solution file
 ```
@@ -84,13 +84,13 @@ Entity relationships:
 The development of this project will progress through the following steps, reflecting my current plan as a developer:
 
 - [X] **Initial Setup**: Set up the initial project structure and solution file to kick things off.
-- [ ] **Adding Entities**: Implement the core entities like Events, Tickets, and Attendees.
-- [ ] **Database Operations**: Establish and configure the database connection to get persistence up and running.
-- [ ] **CRUD Operations**: Build create, read, update, and delete (CRUD) functionality for Events and Tickets to handle core data management.
-- [ ] **Attendee Management**: Add attendee tracking and check-in features to manage participants during events.
-- [ ] **Validation**: Integrate FluentValidation to enforce rules and ensure data integrity across entities.
-- [ ] **Asynchronous Reporting**: Set up RabbitMQ integration for an async reporting system to handle heavy computations off the main thread.
-- [ ] **Reporting Features**: Develop ticket sales and attendee reports using a Worker Service for scalable analytics.
+- [X] **Adding Entities**: Implement the core entities like Events, Tickets, and Attendees.
+- [X] **Database Operations**: Establish and configure the database connection to get persistence up and running.
+- [X] **CRUD Operations**: Build create, read, update, and delete (CRUD) functionality for Events and Tickets to handle core data management.
+- [X] **Attendee Management**: Add attendee tracking and check-in features to manage participants during events.
+- [X] **Validation**: Integrate FluentValidation to enforce rules and ensure data integrity across entities.
+- [X] **Asynchronous Reporting**: Set up RabbitMQ integration for an async reporting system to handle heavy computations off the main thread.
+- [X] **Reporting Features**: Develop ticket sales and attendee reports using a Worker Service for scalable analytics.
 - [ ] **Testing**: Write unit and integration tests to verify functionality and increase test coverage as the codebase grows.
 - [ ] **Frontend Development**: Choose a frontend tech (Blazor, Angular, or React) and build the user interface to bring the app to life.
 
@@ -122,7 +122,7 @@ The development of this project will progress through the following steps, refle
    
 5. **Run the Worker Service (for reporting)**:
    ```bash
-   dotnet run --project EventManagement.Worker
+   dotnet run --project EventManagement.WorkerService
    ```
 ### Configuration
 - Configure RabbitMQ settings in appsettings.json (host, queue name, etc.).
